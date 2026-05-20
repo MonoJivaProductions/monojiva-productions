@@ -3,7 +3,8 @@
 // Edit data portfolio dan nomor WhatsApp di file ini.
 // =======================================================
 
-const WHATSAPP_NUMBER = '6281234567890'; // Ganti dengan nomor Bapak, format: 62xxxxxxxxxxx
+const WHATSAPP_NUMBER = '6282117348472'; // Ganti dengan nomor WhatsApp, format: 62xxxxxxxxxxx
+const EMAIL_ADDRESS = 'kican116@gmail.com'; // Ganti dengan email tujuan // Ganti dengan nomor Bapak, format: 62xxxxxxxxxxx
 
 const works = [
   {
@@ -306,25 +307,77 @@ showreelModal.addEventListener('click', (event) => {
 });
 
 // Contact form to WhatsApp
-contactForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+// Contact form to WhatsApp and Email
+const sendWhatsapp = document.querySelector('#sendWhatsapp');
+const sendEmail = document.querySelector('#sendEmail');
 
-  const name = document.querySelector('#name').value.trim();
-  const contact = document.querySelector('#contactInput').value.trim();
-  const projectType = document.querySelector('#projectType').value;
-  const message = document.querySelector('#message').value.trim();
+function getContactData() {
+  return {
+    name: document.querySelector('#name').value.trim(),
+    contact: document.querySelector('#contactInput').value.trim(),
+    projectType: document.querySelector('#projectType').value,
+    message: document.querySelector('#message').value.trim()
+  };
+}
 
-  const text = 
-    `Halo MonoJiva Productions,%0A%0A` +
-    `Saya ingin diskusi project.%0A%0A` +
-    `Nama: ${encodeURIComponent(name)}%0A` +
-    `Kontak: ${encodeURIComponent(contact)}%0A` +
-    `Jenis Project: ${encodeURIComponent(projectType)}%0A` +
-    `Pesan: ${encodeURIComponent(message)}`;
+function validateContactData(data) {
+  if (!data.name || !data.contact || !data.message) {
+    alert('Mohon isi Nama, Kontak, dan Pesan terlebih dahulu.');
+    return false;
+  }
 
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-  window.open(url, '_blank');
-});
+  return true;
+}
+
+function buildMessage(data) {
+  return `Halo MonoJiva Productions,
+
+Saya ingin diskusi project.
+
+Nama: ${data.name}
+Kontak: ${data.contact}
+Jenis Project: ${data.projectType}
+
+Pesan:
+${data.message}`;
+}
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+}
+
+if (sendWhatsapp) {
+  sendWhatsapp.addEventListener('click', () => {
+    const data = getContactData();
+
+    if (!validateContactData(data)) {
+      return;
+    }
+
+    const text = encodeURIComponent(buildMessage(data));
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+
+    window.open(url, '_blank');
+  });
+}
+
+if (sendEmail) {
+  sendEmail.addEventListener('click', () => {
+    const data = getContactData();
+
+    if (!validateContactData(data)) {
+      return;
+    }
+
+    const subject = encodeURIComponent(`Project Inquiry - ${data.projectType}`);
+    const body = encodeURIComponent(buildMessage(data));
+    const url = `mailto:${EMAIL_ADDRESS}?subject=${subject}&body=${body}`;
+
+    window.location.href = url;
+  });
+}
 
 // Reveal animation
 const revealObserver = new IntersectionObserver((entries) => {
