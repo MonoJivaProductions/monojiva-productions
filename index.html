@@ -430,9 +430,25 @@
             <textarea required id="message" rows="5" placeholder="Ceritakan kebutuhan project Anda..."></textarea>
           </label>
 
-          <button class="mt-6 w-full rounded-full bg-gold px-7 py-4 text-sm font-extrabold uppercase tracking-[0.2em] text-ink transition hover:bg-white" type="submit">
-            Kirim via WhatsApp
-          </button>
+          <div class="mt-6 grid gap-4 md:grid-cols-2">
+  <button 
+    id="sendWhatsapp"
+    class="w-full rounded-full bg-gold px-7 py-4 text-sm font-extrabold uppercase tracking-[0.2em] text-ink transition hover:bg-white" 
+    type="button">
+    Kirim via WhatsApp
+  </button>
+
+  <button 
+    id="sendEmail"
+    class="w-full rounded-full border border-white/15 px-7 py-4 text-sm font-extrabold uppercase tracking-[0.2em] text-white transition hover:border-gold hover:text-gold" 
+    type="button">
+    Kirim via Email
+  </button>
+</div>
+
+<p class="mt-4 text-center text-xs leading-6 text-muted">
+  Tombol WhatsApp akan membuka chat. Tombol Email akan membuka aplikasi email dengan pesan otomatis.
+</p>
 
           <p class="mt-4 text-center text-xs leading-6 text-muted">
             Form ini akan membuka WhatsApp. Nomor dapat diganti di file <code>assets/js/script.js</code>.
