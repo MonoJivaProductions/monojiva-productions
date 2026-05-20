@@ -1,10 +1,15 @@
 // =======================================================
 // MonoJiva Productions - Vanilla JavaScript
-// Edit data portfolio dan nomor WhatsApp di file ini.
+// Edit data portfolio, nomor WhatsApp, email, dan PDF showreel di file ini.
 // =======================================================
 
-const WHATSAPP_NUMBER = '6282117348472'; // Ganti dengan nomor WhatsApp, format: 62xxxxxxxxxxx
-const EMAIL_ADDRESS = 'kican116@gmail.com'; // Ganti dengan email tujuan // Ganti dengan nomor Bapak, format: 62xxxxxxxxxxx
+const WHATSAPP_NUMBER = '6282117348472'; // Format: 62xxxxxxxxxxx
+const EMAIL_ADDRESS = 'kican116@gmail.com';
+const SHOWREEL_PDF = 'assets/pdf/showreel.pdf';
+
+// =======================================================
+// DATA PORTFOLIO
+// =======================================================
 
 const works = [
   {
@@ -87,22 +92,35 @@ const works = [
   }
 ];
 
+// =======================================================
+// ELEMENT SELECTOR
+// =======================================================
+
 const header = document.querySelector('#siteHeader');
 const menuBtn = document.querySelector('#menuBtn');
 const mobileMenu = document.querySelector('#mobileMenu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
+
 const workGrid = document.querySelector('#workGrid');
 const filterButtons = document.querySelectorAll('.filter-btn');
+
 const modal = document.querySelector('#workModal');
 const modalContent = document.querySelector('#modalContent');
 const closeModal = document.querySelector('#closeModal');
-const showreelModal = document.querySelector('#showreelModal');
-const playShowreel = document.querySelector('#playShowreel');
-const closeShowreel = document.querySelector('#closeShowreel');
-const contactForm = document.querySelector('#contactForm');
 
-// Navbar scroll effect
+const playShowreel = document.querySelector('#playShowreel');
+
+const contactForm = document.querySelector('#contactForm');
+const sendWhatsapp = document.querySelector('#sendWhatsapp');
+const sendEmail = document.querySelector('#sendEmail');
+
+// =======================================================
+// NAVBAR SCROLL EFFECT
+// =======================================================
+
 window.addEventListener('scroll', () => {
+  if (!header) return;
+
   if (window.scrollY > 24) {
     header.classList.add('nav-scrolled');
   } else {
@@ -110,19 +128,31 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Mobile menu
-menuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
+// =======================================================
+// MOBILE MENU
+// =======================================================
+
+if (menuBtn && mobileMenu) {
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+}
 
 mobileLinks.forEach((link) => {
   link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
+    if (mobileMenu) {
+      mobileMenu.classList.add('hidden');
+    }
   });
 });
 
-// Render portfolio works
+// =======================================================
+// RENDER PORTFOLIO WORKS
+// =======================================================
+
 function renderWorks(filter = 'all') {
+  if (!workGrid) return;
+
   const filteredWorks = filter === 'all'
     ? works
     : works.filter((work) => work.category === filter);
@@ -166,9 +196,15 @@ function renderWorks(filter = 'all') {
   });
 }
 
-// Open portfolio modal
+// =======================================================
+// PORTFOLIO MODAL
+// =======================================================
+
 function openWorkModal(index) {
+  if (!modal || !modalContent) return;
+
   const work = works[index];
+  if (!work) return;
 
   const mediaContent = work.video
     ? `
@@ -244,37 +280,32 @@ function openWorkModal(index) {
   modal.classList.add('flex');
 }
 
-// Close portfolio modal
 function closeWorkModal() {
+  if (!modal || !modalContent) return;
+
   modal.classList.add('hidden');
   modal.classList.remove('flex');
 
-  // Ini penting supaya video YouTube berhenti saat modal ditutup
+  // Supaya video YouTube berhenti saat modal ditutup
   modalContent.innerHTML = '';
 }
 
-closeModal.addEventListener('click', closeWorkModal);
+if (closeModal) {
+  closeModal.addEventListener('click', closeWorkModal);
+}
 
-modal.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    closeWorkModal();
-  }
-});
-
-// Close modal with ESC key
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    if (!modal.classList.contains('hidden')) {
+if (modal) {
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
       closeWorkModal();
     }
+  });
+}
 
-    if (!showreelModal.classList.contains('hidden')) {
-      closeShowreelModal();
-    }
-  }
-});
+// =======================================================
+// FILTER PORTFOLIO
+// =======================================================
 
-// Filter buttons
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
     filterButtons.forEach((btn) => {
@@ -286,7 +317,29 @@ filterButtons.forEach((button) => {
   });
 });
 
-// Showreel modal
+// =======================================================
+// SHOWREEL PDF
+// =======================================================
+// Mode sekarang: klik showreel akan membuka file PDF.
+// Pastikan file PDF ada di: assets/pdf/showreel.pdf
+//
+// Kode modal showreel lama di HTML boleh tetap disimpan,
+// tetapi dijadikan komentar agar tidak aktif.
+// =======================================================
+
+if (playShowreel) {
+  playShowreel.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.open(SHOWREEL_PDF, '_blank', 'noopener,noreferrer');
+  });
+}
+
+/*
+SHOWREEL MODAL LAMA - DINONAKTIFKAN SEMENTARA
+
+const showreelModal = document.querySelector('#showreelModal');
+const closeShowreel = document.querySelector('#closeShowreel');
+
 function openShowreelModal() {
   showreelModal.classList.remove('hidden');
   showreelModal.classList.add('flex');
@@ -305,18 +358,18 @@ showreelModal.addEventListener('click', (event) => {
     closeShowreelModal();
   }
 });
+*/
 
-// Contact form to WhatsApp
-// Contact form to WhatsApp and Email
-const sendWhatsapp = document.querySelector('#sendWhatsapp');
-const sendEmail = document.querySelector('#sendEmail');
+// =======================================================
+// CONTACT FORM TO WHATSAPP AND EMAIL
+// =======================================================
 
 function getContactData() {
   return {
-    name: document.querySelector('#name').value.trim(),
-    contact: document.querySelector('#contactInput').value.trim(),
-    projectType: document.querySelector('#projectType').value,
-    message: document.querySelector('#message').value.trim()
+    name: document.querySelector('#name')?.value.trim() || '',
+    contact: document.querySelector('#contactInput')?.value.trim() || '',
+    projectType: document.querySelector('#projectType')?.value || '',
+    message: document.querySelector('#message')?.value.trim() || ''
   };
 }
 
@@ -342,44 +395,74 @@ Pesan:
 ${data.message}`;
 }
 
+function openWhatsapp() {
+  const data = getContactData();
+
+  if (!validateContactData(data)) {
+    return;
+  }
+
+  const text = encodeURIComponent(buildMessage(data));
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+
+  window.open(url, '_blank');
+}
+
+function openEmail() {
+  const data = getContactData();
+
+  if (!validateContactData(data)) {
+    return;
+  }
+
+  const subject = encodeURIComponent(`Project Inquiry - ${data.projectType}`);
+  const body = encodeURIComponent(buildMessage(data));
+  const url = `mailto:${EMAIL_ADDRESS}?subject=${subject}&body=${body}`;
+
+  window.location.href = url;
+}
+
+// Kalau form lama masih hanya punya 1 tombol submit,
+// maka submit akan diarahkan ke WhatsApp.
 if (contactForm) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    openWhatsapp();
   });
 }
 
+// Kalau Bapak menambahkan tombol khusus WhatsApp dengan id="sendWhatsapp"
 if (sendWhatsapp) {
-  sendWhatsapp.addEventListener('click', () => {
-    const data = getContactData();
-
-    if (!validateContactData(data)) {
-      return;
-    }
-
-    const text = encodeURIComponent(buildMessage(data));
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-
-    window.open(url, '_blank');
+  sendWhatsapp.addEventListener('click', (event) => {
+    event.preventDefault();
+    openWhatsapp();
   });
 }
 
+// Kalau Bapak menambahkan tombol khusus Email dengan id="sendEmail"
 if (sendEmail) {
-  sendEmail.addEventListener('click', () => {
-    const data = getContactData();
-
-    if (!validateContactData(data)) {
-      return;
-    }
-
-    const subject = encodeURIComponent(`Project Inquiry - ${data.projectType}`);
-    const body = encodeURIComponent(buildMessage(data));
-    const url = `mailto:${EMAIL_ADDRESS}?subject=${subject}&body=${body}`;
-
-    window.location.href = url;
+  sendEmail.addEventListener('click', (event) => {
+    event.preventDefault();
+    openEmail();
   });
 }
 
-// Reveal animation
+// =======================================================
+// CLOSE MODAL WITH ESC KEY
+// =======================================================
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    if (modal && !modal.classList.contains('hidden')) {
+      closeWorkModal();
+    }
+  }
+});
+
+// =======================================================
+// REVEAL ANIMATION
+// =======================================================
+
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -393,8 +476,18 @@ document.querySelectorAll('.reveal').forEach((element) => {
   revealObserver.observe(element);
 });
 
-// Footer year
-document.querySelector('#year').textContent = new Date().getFullYear();
+// =======================================================
+// FOOTER YEAR
+// =======================================================
 
-// Initial render
+const yearElement = document.querySelector('#year');
+
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
+
+// =======================================================
+// INITIAL RENDER
+// =======================================================
+
 renderWorks();
