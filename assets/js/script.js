@@ -31,7 +31,7 @@ const works = [
     description: 'Pesan untuk terus bertahan dan berjuang bagi siapa saja yang sedang merasa rapuh dan lelah dalam menjalani ujian hidup.',
     role: 'Creative Direction',
     format: 'Music Video',
-    delivery: 'FHD',
+    delivery: 'FHD - Instagram | Tiktok | Youtube',
     video: 'https://www.youtube.com/embed/J4fnxKDn9Ks?rel=0',
     gradient: 'linear-gradient(135deg, rgba(214,168,92,0.22), rgba(8,10,15,0.35)), url("https://img.youtube.com/vi/J4fnxKDn9Ks/hqdefault.jpg")'
   },
@@ -44,25 +44,25 @@ const works = [
     description: 'Cerita dari ruang paling sunyi dalam diri. Suara dari jiwa yang bertahan.',
     role: 'Creative Direction',
     format: 'Music Video',
-    delivery: 'FHD',
+    delivery: 'FHD - Instagram | Tiktok | Youtube',
     video: 'https://www.youtube.com/embed/sBs_3z2uGKY',
     gradient: 'linear-gradient(135deg, rgba(214,168,92,0.35), rgba(15,35,56,0.3)), url("assets/img/thumbnail_jiwa.png")'
+  },
+  {
+    title: 'Cahaya Yang Memudar',
+    year: '2026',
+    category: 'music-video',
+    categoryLabel: 'Music Video',
+    mood: 'Melancholic · Romance · Reflective',
+    description: 'Kepada Cahaya Terindah di hidupku. Kepada Bintang yang Menerangi Malam Ku. Maafkan Aku yang Membuat Mu Luka',
+    role: 'Creative Direction',
+    format: 'Music Video',
+    delivery: 'FHD - Instagram | Tiktok | Youtube',
+    video: 'Stay Tuned',
+    gradient: 'linear-gradient(135deg, rgba(15,35,56,0.65), rgba(8,10,15,0.12)), url("assets/img/poster-3.svg")'
   }
   /*
   ,
-  {
-    title: 'Niskala Campaign',
-    year: '2025',
-    category: 'campaign',
-    categoryLabel: 'Visual Campaign',
-    mood: 'Brand Film · Poetic · Minimal',
-    description: 'Campaign visual untuk brand kreatif dengan tone personal dan narasi batin.',
-    role: 'Creative Direction',
-    format: 'Visual Campaign',
-    delivery: 'Reels / Feed / Teaser',
-    video: '',
-    gradient: 'linear-gradient(135deg, rgba(15,35,56,0.65), rgba(8,10,15,0.12)), url("assets/img/poster-3.svg")'
-  },
   {
     title: 'Kota Dalam Kepala',
     year: '2025',
