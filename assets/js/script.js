@@ -48,6 +48,7 @@ const works = [
     video: 'https://www.youtube.com/embed/sBs_3z2uGKY',
     gradient: 'linear-gradient(135deg, rgba(214,168,92,0.35), rgba(15,35,56,0.3)), url("assets/img/thumbnail_jiwa.png")'
   },
+  /*
   {
     title: 'Niskala Campaign',
     year: '2025',
@@ -100,6 +101,7 @@ const works = [
     video: '',
     gradient: 'linear-gradient(135deg, rgba(184,80,66,0.4), rgba(15,35,56,0.45)), url("assets/img/poster-6.svg")'
   }
+  */
 ];
 
 // =======================================================
