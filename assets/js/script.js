@@ -36,17 +36,17 @@ const works = [
     gradient: 'linear-gradient(135deg, rgba(214,168,92,0.22), rgba(8,10,15,0.35)), url("https://img.youtube.com/vi/J4fnxKDn9Ks/hqdefault.jpg")'
   },
   {
-    title: 'Ruang yang Hilang',
+    title: 'Monolog Jiwa',
     year: '2026',
     category: 'music-video',
     categoryLabel: 'Music Video',
-    mood: 'Melancholic · Soft · Dreamy',
-    description: 'Music video dengan permainan cahaya jendela, slow movement, dan color mood hangat.',
-    role: 'Director',
+    mood: 'Melancholic · Reflective · Sad',
+    description: 'Cerita dari ruang paling sunyi dalam diri. Suara dari jiwa yang bertahan.',
+    role: 'Creative Direction',
     format: 'Music Video',
-    delivery: '16:9 / 9:16',
-    video: '',
-    gradient: 'linear-gradient(135deg, rgba(214,168,92,0.35), rgba(15,35,56,0.3)), url("assets/img/poster-2.svg")'
+    delivery: 'FHD',
+    video: 'https://www.youtube.com/embed/sBs_3z2uGKY',
+    gradient: 'linear-gradient(135deg, rgba(214,168,92,0.35), rgba(15,35,56,0.3)), url("assets/img/thumbnail_jiwa.png")'
   },
   {
     title: 'Niskala Campaign',
