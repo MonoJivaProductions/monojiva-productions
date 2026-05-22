@@ -49,7 +49,7 @@ const works = [
     gradient: 'linear-gradient(135deg, rgba(214,168,92,0.35), rgba(15,35,56,0.3)), url("assets/img/thumbnail_jiwa.png")'
   },
   {
-    title: 'Cahaya Yang Memudar (Soon)',
+    title: 'Cahaya Yang Memudar - Incoming',
     year: '2026',
     category: 'music-video',
     categoryLabel: 'Music Video',
