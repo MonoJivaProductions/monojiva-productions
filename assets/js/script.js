@@ -49,7 +49,7 @@ const works = [
     gradient: 'linear-gradient(135deg, rgba(214,168,92,0.35), rgba(15,35,56,0.3)), url("assets/img/thumbnail_jiwa.png")'
   },
   {
-    title: 'Incoming',
+    title: 'Cahaya Yang Memudar',
     year: '2026',
     category: 'music-video',
     categoryLabel: 'Music Video',
@@ -58,7 +58,7 @@ const works = [
     role: 'Creative Direction',
     format: 'Music Video',
     delivery: 'FHD - Instagram | Tiktok | Youtube',
-    video: '',
+    video: 'https://www.youtube.com/embed/lhVaRzJ04jg',
     gradient: 'linear-gradient(135deg, rgba(15,35,56,0.65), rgba(8,10,15,0.12)), url("assets/img/poster-3.svg")'
   },
   /*
